@@ -9,75 +9,73 @@
         color: #FFFFFF;
         font-family: system-ui;
 		margin-left: 20px;
-        }
-	body {
+    }
+    body {
         background-color: #222629;
-        }
+    }
     label {
         color: #86C232;
         font-family: system-ui;
         font-size: 20px;
         margin-left: 20px;
-		margin-top: 20px;
-        }
-     button {
+        margin-top: 20px;
+    }
+    button {
         background-color: #86C232;
-		border-color: #86C232;
-		color: #FFFFFF;
+        border-color: #86C232;
+        color: #FFFFFF;
         font-family: system-ui;
         font-size: 20px;
-		font-weight: bold;
+        font-weight: bold;
         margin-left: 30px;
-		margin-top: 20px;
-		width: 140px;
-        }
-	 input {
+        margin-top: 20px;
+        width: 140px;
+    }
+    input {
         color: #222629;
         font-family: system-ui;
         font-size: 20px;
         margin-left: 10px;
-		margin-top: 20px;
-		width: 100px;
-        }
+        margin-top: 20px;
+        width: 100px;
+    }
     </style>
     <script>
-    // callAPI function that takes the base and exponent numbers as parameters
     var callAPI = () => {
-        // Get the values of FirstName and LastName inputs
         var firstName = document.getElementById('FirstName').value;
         var lastName = document.getElementById('LastName').value;
 
-        // instantiate a headers object
         var myHeaders = new Headers();
-        // add content type header to object
         myHeaders.append("Content-Type", "application/json");
-        // using built-in JSON utility package turn object to string and store in a variable
         var raw = JSON.stringify({"FirstName": firstName, "LastName": lastName});
-        // create a JSON object with parameters for API call and store in a variable
         var requestOptions = {
             method: 'POST',
             headers: myHeaders,
             body: raw,
             redirect: 'follow'
         };
-        // make API call with parameters and use promises to get response
+
         fetch("https://tgeuiyupib.execute-api.ap-south-1.amazonaws.com/dev", requestOptions)
-        .then(response => response.text())
-        .then(result => alert(JSON.parse(result).body))
+        .then(response => {
+            console.log("Response status:", response.status);
+            return response.text();
+        })
+        .then(result => {
+            console.log("Received response:", result);
+            alert(JSON.parse(result).body);
+        })
         .catch(error => console.log('error', error));
     }
-</script>
-
+    </script>
 </head>
 <body>
     <h1>LOGIN</h1>
-	<form>
+    <form>
         <label>FirstName:</label>
         <input type="text" id="FirstName">
         <label>LastName:</label>
         <input type="text" id="LastName">
-        <!-- set button onClick method to call function we defined passing input values as parameters -->
-        <button type="button" onclick="callAPI(document.getElementById('FirstName').name,document.getElementById('LastName').name)">Submit</button>
+        <button type="button" onclick="callAPI()">Submit</button>
     </form>
 </body>
 </html>
