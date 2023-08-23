@@ -1,4 +1,46 @@
-<script>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>To the Power of Math!</title>
+    <!-- Styling for the client UI -->
+    <style>
+    h1 {
+        color: #FFFFFF;
+        font-family: system-ui;
+		margin-left: 20px;
+        }
+	body {
+        background-color: #222629;
+        }
+    label {
+        color: #86C232;
+        font-family: system-ui;
+        font-size: 20px;
+        margin-left: 20px;
+		margin-top: 20px;
+        }
+     button {
+        background-color: #86C232;
+		border-color: #86C232;
+		color: #FFFFFF;
+        font-family: system-ui;
+        font-size: 20px;
+		font-weight: bold;
+        margin-left: 30px;
+		margin-top: 20px;
+		width: 140px;
+        }
+	 input {
+        color: #222629;
+        font-family: system-ui;
+        font-size: 20px;
+        margin-left: 10px;
+		margin-top: 20px;
+		width: 100px;
+        }
+    </style>
+    <script>
     // callAPI function that takes the base and exponent numbers as parameters
     var callAPI = () => {
         // Get the values of FirstName and LastName inputs
@@ -25,3 +67,17 @@
         .catch(error => console.log('error', error));
     }
 </script>
+
+</head>
+<body>
+    <h1>LOGIN</h1>
+	<form>
+        <label>FirstName:</label>
+        <input type="text" id="FirstName">
+        <label>LastName:</label>
+        <input type="text" id="LastName">
+        <!-- set button onClick method to call function we defined passing input values as parameters -->
+        <button type="button" onclick="callAPI(document.getElementById('FirstName').name,document.getElementById('LastName').name)">Submit</button>
+    </form>
+</body>
+</html>
