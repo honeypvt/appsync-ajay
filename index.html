@@ -65,14 +65,22 @@
     </script>
 </head>
 <body>
-    <h1>TO THE POWER OF MATH!</h1>
-	<form>
+    <h1>LOGIN</h1>
+<!-- 	<form>
         <label>FirstName:</label>
         <input type="text" id="FirstName">
         <label>...to the power of:</label>
         <input type="text" id="LastName">
         <!-- set button onClick method to call function we defined passing input values as parameters -->
         <button type="button" onclick="callAPI(document.getElementById('FirstName').value,document.getElementById('LastName').value)">Insert</button>
+    </form> -->
+
+	 <form method="post">
+        <label for="first_name">First Name:</label>
+        <input type="text" id="first_name" name="first_name"><br>
+        <label for="last_name">Last Name:</label>
+        <input type="text" id="last_name" name="last_name"><br>
+        <input type="submit" value="Submit">
     </form>
 </body>
 </html>
