@@ -37,17 +37,18 @@
         font-size: 20px;
         margin-left: 10px;
         margin-top: 20px;
-        width: 100px;
+        width: 200px;
     }
     </style>
     <script>
     var callAPI = () => {
         var firstName = document.getElementById('FirstName').value;
         var lastName = document.getElementById('LastName').value;
+        var email = document.getElementById('Email').value;
 
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
-        var raw = JSON.stringify({"FirstName": firstName, "LastName": lastName});
+        var raw = JSON.stringify({"FirstName": firstName, "LastName": lastName, "Email": email});
         var requestOptions = {
             method: 'POST',
             headers: myHeaders,
@@ -75,7 +76,9 @@
         <input type="text" id="FirstName">
         <label>LastName:</label>
         <input type="text" id="LastName">
-        <button type="button" onclick="callAPI()">Submit</button>
+        <label>Email:</label>
+        <input type="email" id="Email">
+        <button type="button" onclick="callAPI()">Sign In</button>
     </form>
 </body>
 </html>
