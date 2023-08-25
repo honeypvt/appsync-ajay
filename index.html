@@ -8,7 +8,7 @@
     h1 {
         color: #FFFFFF;
         font-family: system-ui;
-		margin-left: 20px;
+        margin-left: 20px;
     }
     body {
         background-color: #222629;
@@ -56,6 +56,7 @@
             redirect: 'follow'
         };
 
+        // Update the URL to the correct endpoint
         fetch("https://b82fcayryh.execute-api.ap-south-1.amazonaws.com/dev/dev", requestOptions)
         .then(response => {
             console.log("Response status:", response.status);
