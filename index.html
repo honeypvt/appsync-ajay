@@ -2,84 +2,77 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>To the Power of Math!</title> 
+    <title>To the Power of Math!</title>
     <!-- Styling for the client UI -->
     <style>
     h1 {
         color: #FFFFFF;
         font-family: system-ui;
-        margin-left: 20px;
-    }
-    body {
+		margin-left: 20px;
+        }
+	body {
         background-color: #222629;
-    }
+        }
     label {
         color: #86C232;
         font-family: system-ui;
         font-size: 20px;
         margin-left: 20px;
-        margin-top: 20px;
-    }
-    button {
+		margin-top: 20px;
+        }
+     button {
         background-color: #86C232;
-        border-color: #86C232;
-        color: #FFFFFF;
+		border-color: #86C232;
+		color: #FFFFFF;
         font-family: system-ui;
         font-size: 20px;
-        font-weight: bold;
+		font-weight: bold;
         margin-left: 30px;
-        margin-top: 20px;
-        width: 140px;
-    }
-    input {
+		margin-top: 20px;
+		width: 140px;
+        }
+	 input {
         color: #222629;
         font-family: system-ui;
         font-size: 20px;
         margin-left: 10px;
-        margin-top: 20px;
-        width: 200px;
-    }
+		margin-top: 20px;
+		width: 100px;
+        }
     </style>
     <script>
-    var callAPI = () => {
-        var firstName = document.getElementById('FirstName').value;
-        var lastName = document.getElementById('LastName').value;
-        var email = document.getElementById('Email').value;
-
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-        var raw = JSON.stringify({"FirstName": firstName, "LastName": lastName, "Email": email});
-        var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: raw,
-            redirect: 'follow'
-        };
-
-        // Update the URL to the correct endpoint
-        fetch("https://c4ob3j8103.execute-api.ap-south-1.amazonaws.com/dev/sample", requestOptions)
-        .then(response => {
-            console.log("Response status:", response.status);
-            return response.text();
-        })
-        .then(result => {
-            console.log("Received response:", result);
-            alert(JSON.parse(result).body);
-        })
-        .catch(error => console.log('error', error));
-    }
+        // callAPI function that takes the base and exponent numbers as parameters
+        var callAPI = (base,exponent)=>{
+            // instantiate a headers object
+            var myHeaders = new Headers();
+            // add content type header to object
+            myHeaders.append("Content-Type", "application/json");
+            // using built in JSON utility package turn object to string and store in a variable
+            var raw = JSON.stringify({"base":base,"exponent":exponent});
+            // create a JSON object with parameters for API call and store in a variable
+            var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+            };
+            // make API call with parameters and use promises to get response
+            fetch("https://di2hfr3od8.execute-api.ap-south-1.amazonaws.com/dev/myresource", requestOptions)
+            .then(response => response.text())
+            .then(result => alert(JSON.parse(result).body))
+            .catch(error => console.log('error', error));
+        }
     </script>
 </head>
 <body>
-    <h1>LOGIN</h1>
-    <form>
-        <label>FirstName:</label>
-        <input type="text" id="FirstName">
-        <label>LastName:</label>
-        <input type="text" id="LastName">
-        <label>Email:</label>
-        <input type="email" id="Email">
-        <button type="button" onclick="callAPI()">Sign In</button>
+    <h1>TO THE POWER OF MATH!</h1>
+	<form>
+        <label>Base number:</label>
+        <input type="text" id="base">
+        <label>...to the power of:</label>
+        <input type="text" id="exponent">
+        <!-- set button onClick method to call function we defined passing input values as parameters -->
+        <button type="button" onclick="callAPI(document.getElementById('base').value,document.getElementById('exponent').value)">CALCULATE</button>
     </form>
 </body>
 </html>
